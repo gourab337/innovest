@@ -10,7 +10,7 @@ function Layout() {
         <Nav />
       </div>
       <div className='flex  items-center'>
-        <SidebarLeft />
+        <SidebarLeft text={'Hi'}/>
         <main className='h-auto w-full p-2 '>
           <Outlet />
         </main>
