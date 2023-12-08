@@ -9,9 +9,9 @@ function Layout() {
       <div className='h-auto'>
         <Nav />
       </div>
-      <div className='flex justify-around'>
+      <div className='flex  items-center'>
         <SidebarLeft />
-        <main className='h-auto w-2/5 p-2'>
+        <main className='h-auto w-full p-2 '>
           <Outlet />
         </main>
         <SidebarRight />
