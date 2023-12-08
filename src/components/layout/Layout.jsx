@@ -3,10 +3,12 @@ import Nav from '../nav/Nav';
 import SidebarLeft from './SidebarLeft';
 import SidebarRight from './SideBarRight';
 
+import VerticalHeighlights from '../profile/VerticalHighlights';
+
 function Layout() {
   return (
     <div className='antialiased bg-black flex flex-col'>
-      <div className='h-auto'>
+      <div className='h-20'>
         <Nav />
       </div>
       <div className='flex'>
@@ -15,6 +17,16 @@ function Layout() {
           <Outlet />
         </main>
         <SidebarRight />
+      </div>
+      <div className='border-t mb-10 border-gray-800'></div>
+      <div className='flex items-center justify-center w-full mb-10'>
+        <div className='w-2/3'>
+          <div className='flex justify-between text-white text-2xl font-bold mb-6 font-lato'>
+            <div>Explore Profiles</div>
+            <div className='text-blue-700 text-lg cursor-pointer'>See all</div>
+          </div>
+          <VerticalHeighlights />
+        </div>
       </div>
     </div>
   );

@@ -18,7 +18,7 @@ function SidebarLeft({ text }) {
   };
 
   return (
-    <aside className=' z-40 w-full h-screen  bg-black border-r border-gray-800 flex justify-center'>
+    <aside className=' z-40 w-full min-h-screen  bg-black border-r border-gray-800 flex justify-center'>
       <div className='px-4 py-5 flex flex-col mt-4 gap-2'>
         <img
           className='inline-block rounded-full h-16 w-16 ring-2 ring-white '
