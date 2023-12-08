@@ -21,6 +21,11 @@ function SidebarRight() {
       name: 'pratik pakhale',
       ens: 'pratz.eth',
     },
+    {
+      image: 'https://profile.coinbase.com/images/default_avatars/Frame-13.svg',
+      name: 'gourab chakraborty',
+      ens: 'wealthybrains.eth',
+    },
   ];
 
   return (
@@ -33,6 +38,9 @@ function SidebarRight() {
         {popularProfiles.map(profile => {
           return <HighlightProfile key={profile?.ens} profile={profile} />;
         })}
+        <div className='flex items-center justify-start text-blue-700 font-roboto font-semibold mt-4 cursor-pointer'>
+          Explore more
+        </div>
       </div>
     </aside>
   );

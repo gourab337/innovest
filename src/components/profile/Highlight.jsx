@@ -1,6 +1,6 @@
 function Highlight({ profile }) {
   return (
-    <div className='flex items-center '>
+    <div className='flex items-center mb-1.5'>
       <img
         className='w-9 h-9 rounded-full block'
         src={profile?.image}
