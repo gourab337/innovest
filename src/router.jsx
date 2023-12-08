@@ -6,13 +6,14 @@ import Explore from './pages/Explore';
 
 const router = createBrowserRouter([
   {
+    path: '/explore',
+    element: <Explore />,
+  },
+  {
     path: '/',
     element: <Layout />,
+
     children: [
-      {
-        path: '/explore',
-        element: <Explore />,
-      },
       {
         path: '/:id',
         element: <Profile />,
