@@ -24,7 +24,7 @@ function SidebarRight() {
   ];
 
   return (
-    <aside className='z-40 w-1/5 h-screen  bg-black  border-l border-gray-800 '>
+    <aside className='z-40 h-screen  bg-black  border-l border-gray-800 w-full '>
       <div className='px-4 py-5 flex flex-col text-gray-300'>
         <div className='flex items-center justify-start font-roboto font-semibold mb-4'>
           Popular Profiles
