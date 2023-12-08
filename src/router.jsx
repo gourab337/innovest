@@ -2,12 +2,17 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import Profile from './pages/profile';
 import Layout from './components/layout/Layout';
+import Explore from './pages/Explore';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
     children: [
+      {
+        path: '/explore',
+        element: <Explore />,
+      },
       {
         path: '/:id',
         element: <Profile />,

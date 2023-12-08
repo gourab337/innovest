@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Search from './Search';
 
 function Nav() {
@@ -11,12 +12,14 @@ function Nav() {
         </div>
         <Search />
         <div className='flex items-center justify-between'>
-          <button
-            type='button'
-            className='py-2.5 px-5  text-sm  font-roboto tracking-wider  bg-blue-700 text-white focus:outline-none  rounded-full  font-bold hover:bg-blue-800 hover:shadow-md transition-shadow            '
-          >
-            Explore
-          </button>
+          <Link to={'/explore'}>
+            <button
+              type='button'
+              className='py-2.5 px-5  text-sm  font-roboto tracking-wider  bg-blue-700 text-white focus:outline-none  rounded-full  font-bold hover:bg-blue-800 hover:shadow-md transition-shadow            '
+            >
+              Explore
+            </button>
+          </Link>
         </div>
       </div>
     </nav>
