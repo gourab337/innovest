@@ -9,7 +9,7 @@ function Layout() {
       <div className='h-auto'>
         <Nav />
       </div>
-      <div className='flex justify-around items-center'>
+      <div className='flex justify-around'>
         <SidebarLeft />
         <main className='h-auto w-2/5 p-2'>
           <Outlet />
