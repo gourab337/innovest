@@ -12,6 +12,10 @@ const router = createBrowserRouter([
         path: '/:id',
         element: <Profile />,
       },
+      {
+        path: '/',
+        element: <h1 className='text-white'>go to /:id</h1>,
+      },
     ],
   },
 ]);
