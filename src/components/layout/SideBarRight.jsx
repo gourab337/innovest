@@ -16,7 +16,7 @@ function SidebarRight() {
   ];
 
   return (
-    <aside className='z-40 h-screen  bg-black border-l border-gray-800 w-full '>
+    <aside className='z-40 min-h-screen  bg-black border-l border-gray-800 w-full '>
       <div className='pl-8 py-5 flex flex-col text-gray-300'>
         <TitleInfo title='Popular Profiles' />
         <span className='mb-4'></span>
