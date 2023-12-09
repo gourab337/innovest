@@ -23,7 +23,7 @@ const AuthContextProvider = props => {
       enableLogging: true,
       showWidgetButton: false,
       chainConfig: {
-        chainId: '0x1',
+        chainId: import.meta.env.VITE_APP_CHAINID,
         rpcTarget: `${import.meta.env.VITE_APP_RPC}`,
       },
     };

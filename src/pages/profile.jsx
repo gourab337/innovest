@@ -1,5 +1,8 @@
 import TilteInfo from '../utils/TilteInfo';
-import { FaArrowCircleDown, FaStarHalfAlt } from 'react-icons/fa';
+import { FaArrowCircleDown, FaChessKing, FaStarHalfAlt } from 'react-icons/fa';
+import { useCallback, useContext, useState, useEffect } from 'react';
+
+import { authContext } from '../store/Auth';
 
 const CardGrid = ({ data }) => {
   const truncateText = (text, maxLength) => {
@@ -11,12 +14,12 @@ const CardGrid = ({ data }) => {
       {data?.map((item, index) => (
         <div key={index} className=' p-4 rounded-md'>
           <img
-            src={item.image}
+            src={item?.image_original_url}
             alt='nft'
             className='h-36 w-36 rounded-md mb-2 hover:shadow-md cursor-pointer'
           />
           <p className='text-white font-bold font-lato'>
-            {truncateText(item.description || item.ens || 'dummy.eth', 16)}
+            {truncateText(item.description || item.name || 'dummy.eth', 16)}
           </p>
         </div>
       ))}
@@ -67,63 +70,126 @@ const RecentActivity = ({ data }) => {
 };
 
 function Profile() {
-  const holdings = [
-    {
-      image:
-        'https://static.debank.com/image/coin/logo_url/usdc/e87790bfe0b3f2ea855dc29069b38818.png',
-      name: 'USD Coin',
-      primaryAmount: '725.00',
-      secondaryAmount: '725 USDC',
-    },
-    {
-      image:
-        'https://static.debank.com/image/eth_token/logo_url/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2/61844453e63cf81301f845d7864236f6.png',
-      name: 'Wrapped Ether',
-      primaryAmount: '149.32',
-      secondaryAmount: '0.05 WETH',
-    },
-    {
-      image:
-        'https://static.debank.com/image/token/logo_url/eth/935ae4e4d1d12d59a99717a24f2540b5.png',
-      name: 'ETH',
-      primaryAmount: '98.16',
-      secondaryAmount: '0.03 ETH',
-    },
-  ];
+  // const { token } = useContext(authContext);
+  let token = '0x0d3204BEf84C6A65D2A88A274Dd787D3faD2cdF1';
 
-  const NFTs = [
-    {
-      image:
-        'https://res.cloudinary.com/coin-nft/image/upload/c_limit,q_auto,w_569/f_auto/v1/cache/1/d6/df/d6df1e0fef7f68d2eaf4754f4e773bb33a050ce8878d518b8d3806b6d5df436e-NjZiNjBiZmQtOTNhMC00NTcwLWIwZWItNDk5ZWY0MGMwM2Fm',
-      description: 'Superlative Famous Society',
-    },
-    {
-      image:
-        'https://res.cloudinary.com/coin-nft/image/upload/c_limit,q_auto,w_569/f_auto/v1/cache/1/d6/df/d6df1e0fef7f68d2eaf4754f4e773bb33a050ce8878d518b8d3806b6d5df436e-NjZiNjBiZmQtOTNhMC00NTcwLWIwZWItNDk5ZWY0MGMwM2Fm',
-      description: 'Superlative Famous Society',
-    },
-    {
-      image:
-        'https://res.cloudinary.com/coin-nft/image/upload/c_limit,q_auto,w_569/f_auto/v1/cache/1/d6/df/d6df1e0fef7f68d2eaf4754f4e773bb33a050ce8878d518b8d3806b6d5df436e-NjZiNjBiZmQtOTNhMC00NTcwLWIwZWItNDk5ZWY0MGMwM2Fm',
-      description: 'Superlative Famous Society',
-    },
-    {
-      image:
-        'https://res.cloudinary.com/coin-nft/image/upload/c_limit,q_auto,w_569/f_auto/v1/cache/1/d6/df/d6df1e0fef7f68d2eaf4754f4e773bb33a050ce8878d518b8d3806b6d5df436e-NjZiNjBiZmQtOTNhMC00NTcwLWIwZWItNDk5ZWY0MGMwM2Fm',
-      description: 'Superlative Famous Society',
-    },
-    {
-      image:
-        'https://res.cloudinary.com/coin-nft/image/upload/c_limit,q_auto,w_569/f_auto/v1/cache/1/d6/df/d6df1e0fef7f68d2eaf4754f4e773bb33a050ce8878d518b8d3806b6d5df436e-NjZiNjBiZmQtOTNhMC00NTcwLWIwZWItNDk5ZWY0MGMwM2Fm',
-      description: 'Superlative Famous Society',
-    },
-  ];
+  const [holdings, setHoldings] = useState([]);
+  const [NFTs, setNFTs] = useState([]);
+  const [total, setTotal] = useState(0);
+
+  const dividers = {
+    ETH: 18,
+    USDC: 6,
+    USDT: 6,
+    DAI: 18,
+    WBTC: 8,
+    WETH: 18,
+    UNI: 18,
+    AAVE: 18,
+  };
+
+  const loadNFTs = useCallback(async () => {
+    const res = await fetch(
+      `http://localhost:3000/?url=https://api.1inch.dev/nft/v1/byaddress?chainIds=${
+        import.meta.env.VITE_APP_CHAINID
+      }&address=${token}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+      }
+    );
+
+    const data = await res.json();
+
+    console.log(data);
+
+    if (data.assets) {
+      setNFTs(data.assets);
+    }
+  }, []);
+
+  const loadHoldings = useCallback(async () => {
+    const res = await fetch(
+      'http://localhost:3000/?url=https://api.1inch.dev/balance/v1.2/1/balances/' +
+        token,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+      }
+    );
+    const data = await res.json();
+    const valuedData = {};
+    for (const addr in data) {
+      if (data[addr] > 0) {
+        valuedData[addr] = data[addr];
+      }
+    }
+
+    console.log(valuedData);
+    const topHolds = [];
+
+    for (const addr in valuedData) {
+      const res = await fetch(
+        `http://localhost:3000/?url=https://api.1inch.dev/token/v1.2/1/custom/${addr}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+        }
+      );
+      const data = await res.json();
+      topHolds.push({
+        ...data,
+        rate: valuedData[addr],
+      });
+    }
+
+    topHolds.forEach(hold => {
+      if (dividers[hold.symbol]) {
+        hold.rate = hold.rate / 10 ** dividers[hold.symbol];
+      }
+    });
+    console.log(topHolds);
+
+    setHoldings(topHolds);
+  }, []);
+
+  const loadTotal = useCallback(async () => {
+    console.log('hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
+    console.log(holdings);
+    holdings.forEach(async hold => {
+      const res = await fetch(
+        `http://localhost:3000/?url=https://api.1inch.dev/price/v1.1/1/${hold.address}?currency=USD`
+      );
+      const data = await res.json();
+      console.log(data);
+      const value = data[hold.address] * hold.rate;
+      setTotal(total + value);
+    });
+  }, []);
+
+  const loadData = useCallback(async () => {
+    await loadHoldings();
+
+    await loadNFTs();
+
+    await loadTotal();
+  }, []);
+
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
 
   const recentActivity = [
     {
       action: 'subscribe',
       name: 'Gnome Research',
-      id: '0x1234...5678',
+      id: '0x1234.asdasnd678',
     },
     {
       action: 'receive',
@@ -136,27 +202,27 @@ function Profile() {
     <div className='text-white font-roboto '>
       <div className='flex flex-col px-5 mt-4'>
         <TilteInfo title='Total balance on Ethereum' />
-        <div className='text-2xl font-bold'>$972.69</div>
+        <div className='text-2xl font-bold'>${total}</div>
       </div>
       <div className='mt-6'>
         <TilteInfo className='px-5' title='Top holdings' />
         {holdings.map(holding => {
           return (
             <div
-              key={holding?.name}
+              key={holding?.symbol}
               className='py-4 px-4 mx-2 flex justify-between items-center font-bold mb-2 hover:bg-slate-950 rounded-lg cursor-pointer '
             >
               <div className='flex items-center justify-center'>
                 <img
                   className='w-9 h-9 rounded-full block'
-                  src={holding?.image}
+                  src={holding?.logoURI}
                   alt='Rounded avatar'
                 />
                 <div className='ml-3 text-lg'>{holding?.name}</div>
               </div>
               <div className='flex flex-col text-right'>
-                <div>${holding?.primaryAmount}</div>
-                <div className='text-gray-500'>{holding?.secondaryAmount}</div>
+                <div>${holding?.rate}</div>
+                <div className='text-gray-500'>Rating {holding?.rating}</div>
               </div>
             </div>
           );
