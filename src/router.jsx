@@ -6,7 +6,7 @@ import Explore from './pages/Explore';
 import Auth from './pages/auth';
 import Details from './pages/Details';
 import './styles/global.css';
-import Stripe from './pages/Stripe';
+import Stripe from './pages/Push';
 
 const router = createBrowserRouter([
   {
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: '/stripe',
+    path: '/push',
     element: <Stripe />,
   },
   {
