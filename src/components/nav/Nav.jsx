@@ -35,7 +35,7 @@ function Nav() {
               className='py-2.5 px-5  text-sm  font-roboto tracking-wider  bg-blue-700 text-white focus:outline-none  rounded-full  font-bold hover:bg-blue-800 hover:shadow-md transition-shadow            '
               onClick={async () => {
                 await login();
-                navigate('/profile');
+                navigate('/push');
               }}
             >
               Connect

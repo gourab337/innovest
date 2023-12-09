@@ -14,9 +14,6 @@ export default ({ mode }) => {
       process: JSON.stringify(proc),
     },
     plugins: [react()],
-    rules: {
-      'react/prop-types': false,
-    },
     optimizeDeps: {
       esbuildOptions: {
         // Node.js global to browser globalThis

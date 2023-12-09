@@ -55,7 +55,7 @@ const AuthContextProvider = props => {
         isAuthenticated,
         token,
         user,
-
+        safeAuthPack,
         login,
         logout,
       }}

@@ -2,6 +2,8 @@ import TilteInfo from '../utils/TilteInfo';
 import { FaArrowCircleDown, FaChessKing, FaStarHalfAlt } from 'react-icons/fa';
 import { useCallback, useContext, useState, useEffect } from 'react';
 
+import { useGetTokenBalances } from '@airstack/airstack-react';
+
 import { authContext } from '../store/Auth';
 
 const CardGrid = ({ data }) => {
@@ -73,6 +75,14 @@ function Profile() {
   // const { token } = useContext(authContext);
   let token = '0x0d3204BEf84C6A65D2A88A274Dd787D3faD2cdF1';
 
+  const [fetchBalances, { data: balances, loading, pagination }] =
+    useGetTokenBalances({
+      identitity: token,
+      tokenType: ['ERC20', 'ERC721', 'ERC1155'],
+      blockchain: 'ethereum',
+      limit: 200,
+    });
+
   const [holdings, setHoldings] = useState([]);
   const [NFTs, setNFTs] = useState([]);
   const [total, setTotal] = useState(0);
@@ -122,6 +132,7 @@ function Profile() {
       }
     );
     const data = await res.json();
+    console.log(data);
     const valuedData = {};
     for (const addr in data) {
       if (data[addr] > 0) {
@@ -133,6 +144,7 @@ function Profile() {
     const topHolds = [];
 
     for (const addr in valuedData) {
+      await new Promise(r => setTimeout(r, 2000));
       const res = await fetch(
         `http://localhost:3000/?url=https://api.1inch.dev/token/v1.2/1/custom/${addr}`,
         {
@@ -157,28 +169,36 @@ function Profile() {
     console.log(topHolds);
 
     setHoldings(topHolds);
+    return topHolds;
   }, []);
 
-  const loadTotal = useCallback(async () => {
-    console.log('hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
+  const loadTotal = useCallback(async holdings => {
     console.log(holdings);
     holdings.forEach(async hold => {
+      await new Promise(r => setTimeout(r, 5000));
       const res = await fetch(
         `http://localhost:3000/?url=https://api.1inch.dev/price/v1.1/1/${hold.address}?currency=USD`
       );
+
       const data = await res.json();
-      console.log(data);
       const value = data[hold.address] * hold.rate;
+      console.log(value, data, Date.now());
+      if (isNaN(value)) return;
       setTotal(total + value);
     });
   }, []);
 
   const loadData = useCallback(async () => {
-    await loadHoldings();
+    const holds = await loadHoldings();
+    await new Promise(r => setTimeout(r, 2000));
 
     await loadNFTs();
+    await new Promise(r => setTimeout(r, 2000));
 
-    await loadTotal();
+    await loadTotal(holds);
+
+    const { data, error } = await fetchBalances(balances, loading, pagination);
+    console.log(data, error);
   }, []);
 
   useEffect(() => {

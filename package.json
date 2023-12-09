@@ -10,8 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@airstack/airstack-react": "^0.6.1",
     "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
+    "@huddle01/react": "^1.0.0-alpha.58",
+    "@huddle01/server-sdk": "^0.0.0-alpha.0",
+    "@metamask/sdk-react": "^0.14.1",
+    "@pushprotocol/restapi": "^1.4.45",
     "@safe-global/auth-kit": "^2.0.0",
+    "@safe-global/protocol-kit": "^2.0.0",
     "@web3auth/safeauth-embed": "^0.0.0",
     "axios": "^1.6.2",
     "react": "^18.2.0",
