@@ -1,10 +1,45 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Nav from '../components/nav/Nav';
 import Drops from '../components/details/Drops';
 import SuggestedProfiles from '../components/details/SuggestedProfiles';
+import Web3 from 'web3';
+import ABI from '../../contracts/ABI.json'
 
 const Details = () => {
+  const web3 = window.ethereum ? new Web3(window.ethereum) : null;
+  let contract = null;
+  if (!web3) {
+    console.error("Web3 provider not found");
+  } else {
+    contract = new web3.eth.Contract(
+      ABI,
+      '0x6c9416C8C39049E9D956fF6cEAdabAa5C296bC52', 
+
+    );
+console.log(contract)
+  }
+  const checkContractData = async () => {
+    contract = new web3.eth.Contract(
+      ABI,
+      '0x6c9416C8C39049E9D956fF6cEAdabAa5C296bC52', 
+
+    );
+    const response =  await contract.methods.isStakeholder('0x4C31B5c5f1D874458cfF136030D066bF38Bc407e').call((error, response) => {
+      if (error) {
+        console.error("Error calling contract method:", error);
+      } else {
+        console.log("response from the contract is", response);
+      }
+    });
+    console.log("response from contract:",response)
+  };
+
+
   const [activeTab, setActiveTab] = useState('nft');
+  useEffect(() => {
+    checkContractData()
+  }, [])
+
   return (
     <>
       <Nav />
@@ -44,17 +79,15 @@ const Details = () => {
           <div className='flex'>
             <button
               onClick={() => setActiveTab('nft')}
-              className={`text-white py-2 px-4 border-b-2 border-transparent focus:outline-none hover:border-blue-500 ${
-                activeTab === 'nft' ? 'border-blue-500' : ''
-              }`}
+              className={`text-white py-2 px-4 border-b-2 border-transparent focus:outline-none hover:border-blue-500 ${activeTab === 'nft' ? 'border-blue-500' : ''
+                }`}
             >
               Drops
             </button>
             <button
               onClick={() => setActiveTab('investor')}
-              className={`text-white py-2 px-4 border-b-2 border-transparent focus:outline-none hover:border-blue-500 ${
-                activeTab === 'investor' ? 'border-blue-500' : ''
-              }`}
+              className={`text-white py-2 px-4 border-b-2 border-transparent focus:outline-none hover:border-blue-500 ${activeTab === 'investor' ? 'border-blue-500' : ''
+                }`}
             >
               Suggested Profiles
             </button>

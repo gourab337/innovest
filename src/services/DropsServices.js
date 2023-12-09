@@ -14,8 +14,6 @@ export const getImages=(()=>{
       })
       .then(response => {
         const imageUrl = response.data;
-        console.log(response)
-        console.log(`Image URL: ${imageUrl}`);
         return imageUrl
        
       })
