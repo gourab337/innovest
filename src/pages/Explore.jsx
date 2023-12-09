@@ -13,7 +13,7 @@ function Explore() {
           className="flex-1 max-w-xs  border border-gray-200 rounded-lg shadow  dark:border-gray-700 m-2  bg-opacity-0"
         >
           <div className="max-w-sm  border border-gray-200 rounded-lg shadow  dark:border-gray-700  bg-opacity-0 ">
-            <a href="#">
+            <a href="/explore/details">
               <img className="rounded-t-lg w-full" src='https://profile.coinbase.com/images/default_avatars/Frame-12.svg' alt="" />
             </a>
             <div className="p-5">

@@ -19,7 +19,7 @@ const Details = () => {
 
                     <div>
                         <h5 className="text-3xl font-bold mb-2">Noteworthy technology acquisitio</h5>
-                        <button className="bg-grey-500 bg-gray-800 border border-gray-200 w-full text-white py-2 px-4 rounded-md mb-4">Invest Now</button>
+                        <button className="bg-grey-500 bg-gray-800 border border-gray-200 w-full text-white py-2 px-4 rounded-md mb-4 bg-opacity-0">Invest Now</button>
                         <div className="bg-gray-700 border border-gray-600 rounded-lg shadow p-4">
                             <p className="text-gray-300">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
                         </div>
