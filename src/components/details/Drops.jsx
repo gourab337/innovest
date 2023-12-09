@@ -38,6 +38,10 @@ const Drops = () => {
                       {cardData.name}
                     </h5>
                     <p className="text-blue-400 text-sm ">{cardData.projectOwner}</p>
+                    <div className='flex flex-row justify-between text-gray-600'>
+                    <p className=" text-sm ">{cardData.date}</p>
+                    <p className=" text-sm ">{cardData.noOfOwner}</p>
+                    </div>
                   </div>
                 </div>
               </>
