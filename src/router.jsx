@@ -10,15 +10,14 @@ import Stripe from './pages/Stripe';
 
 const router = createBrowserRouter([
   {
+    path: '/explore/:id',
+    element: <Details />,
+  },
+  {
     path: '/explore',
     element: <Explore />,
-    children: [
-      {
-        path: '/:id',
-        element: <Details />,
-      },
-    ],
   },
+
   {
     path: '/stripe',
     element: <Stripe />,
