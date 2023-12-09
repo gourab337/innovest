@@ -15,19 +15,19 @@ function Explore() {
     <>
       <Nav />
       <div className='mt-24'>
-      <div className='h-3/4 bg-black w-full '>
+      <div className=' bg-black w-full '>
         <div className='px-4 py-5'>
           <span className='text-white'>Projects</span>
-          <div className='flex flex-wrap gap-2 justify-center'>
+          <div className='flex flex-wrap gap-2 justify-center '>
             {projectList?.map((ele, index) => (
               <div
                 key={index}
-                className='w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4'
+                className='w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 h-3/4'
               >
-                <div className='border border-gray-200 rounded-lg shadow dark:border-gray-700 bg-opacity-0 h-3/4'>
+                <div className='border border-gray-200 rounded-lg shadow dark:border-gray-700 bg-opacity-0 h-96'>
                   <a href='/explore/details'>
                     <img
-                      className='rounded-t-lg w-full h-1/2 object-cover'
+                      className='rounded-t-lg w-full h-44 object-cover'
                       src={ele?.imgUrl}
                       alt=''
                     />
@@ -39,7 +39,7 @@ function Explore() {
                       </h5>
                     </a>
                       <p className='text-sm text-gray-700 dark:text-gray-400 bg-opacity-0'>
-                      {truncateDescription(ele?.description, 200)}
+                      {truncateDescription(ele?.description, 150)}
                       </p>
                     <a href='#' className='text-blue-700'>
                       Read more
