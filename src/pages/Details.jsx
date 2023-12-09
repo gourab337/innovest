@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Nav from '../components/nav/Nav';
-import NFTList from '../components/details/NFTList';
-import Investors from '../components/details/Investors';
+import Drops from '../components/details/Drops';
+import SuggestedProfiles from '../components/details/SuggestedProfiles';
 
 const Details = () => {
   const [activeTab, setActiveTab] = useState('nft');
@@ -40,7 +40,7 @@ const Details = () => {
             </div>
           </div>
         </div>
-        <div className='w-1/3 h-auto mt-4 bg-gray-800 rounded-lg shadow p-4 flex flex-col text-white relative gap-4 bg-opacity-0'>
+        <div className=' h-auto mt-4 bg-gray-800 rounded-lg shadow p-4 flex flex-col text-white relative gap-4 bg-opacity-0'>
           <div className='flex'>
             <button
               onClick={() => setActiveTab('nft')}
@@ -48,7 +48,7 @@ const Details = () => {
                 activeTab === 'nft' ? 'border-blue-500' : ''
               }`}
             >
-              NFT List
+              Drops
             </button>
             <button
               onClick={() => setActiveTab('investor')}
@@ -56,11 +56,11 @@ const Details = () => {
                 activeTab === 'investor' ? 'border-blue-500' : ''
               }`}
             >
-              Investors
+              Suggested Profiles
             </button>
           </div>
           <div className='mt-4'>
-            {activeTab === 'nft' ? <NFTList /> : <Investors />}
+            {activeTab === 'nft' ? <Drops /> : <SuggestedProfiles />}
           </div>
         </div>
       </div>
