@@ -1,8 +1,13 @@
 import { useRef } from 'react';
 import { IoCopyOutline } from 'react-icons/io5';
 
-function SidebarLeft({ text }) {
+import { useContext } from 'react';
+import { authContext } from '../../store/Auth';
+
+function SidebarLeft() {
   const buttonRef = useRef();
+
+  const { user, token } = useContext(authContext);
 
   const copyText = () => {
     const textToCopy = buttonRef.current.innerText;
@@ -22,11 +27,11 @@ function SidebarLeft({ text }) {
       <div className='px-4 py-5 flex flex-col mt-4 gap-2'>
         <img
           className='inline-block rounded-full h-16 w-16 ring-2 ring-white '
-          src='https://profile.coinbase.com/images/default_avatars/Frame-12.svg'
+          src={user?.profileImage}
           alt=''
         />
         <div>
-          <h1 className='text-white font-bold '>GC Lowdi</h1>
+          <h1 className='text-white font-bold '>{user?.name}</h1>
         </div>
         <div>
           <button
@@ -36,7 +41,7 @@ function SidebarLeft({ text }) {
             onClick={copyText}
           >
             <IoCopyOutline className='mr-1' />
-            {text}
+            {token}
           </button>
         </div>
       </div>

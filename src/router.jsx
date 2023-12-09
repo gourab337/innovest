@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import Profile from './pages/profile';
 import Layout from './components/layout/Layout';
 import Explore from './pages/Explore';
+import Auth from './pages/auth';
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/',
-        element: <h1 className='text-white'>go to /:id</h1>,
+        element: <Auth />,
       },
     ],
   },
