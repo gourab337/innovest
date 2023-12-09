@@ -4,6 +4,7 @@ import Profile from './pages/profile';
 import Layout from './components/layout/Layout';
 import Explore from './pages/Explore';
 import Details from './pages/Details';
+import './styles/global.css';
 
 const router = createBrowserRouter([
   {

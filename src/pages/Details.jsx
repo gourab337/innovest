@@ -8,11 +8,8 @@ const Details = () => {
     return (
         <>
             <Nav />
-            <div className="h-screen bg-black w-full flex justify-center gap-4">
-
-                {/* First Card */}
+            <div className="h-screen bg-black w-full flex justify-center gap-4 mt-24">
                 <div className="w-1/3 mt-4 h-auto bg-gray-800 rounded-lg shadow p-4 flex flex-col text-white relative gap-36 bg-opacity-0">
-                    {/* Section 1: Blurred Background Image */}
                     <div className='h-24'>
                         <div className="hidden md:block w-full h-24 filter blur-lg">
                             <img className="object-cover w-full h-36" src="https://profile.coinbase.com/images/default_avatars/Frame-12.svg" alt="" />
@@ -29,10 +26,7 @@ const Details = () => {
                     </div>
 
                 </div>
-
-                {/* Second Card */}
                 <div className="w-1/3 h-auto mt-4 bg-gray-800 rounded-lg shadow p-4 flex flex-col text-white relative gap-4 bg-opacity-0">
-                    {/* Tabs */}
                     <div className="flex">
                         <button
                             onClick={() => setActiveTab('nft')}
@@ -47,10 +41,7 @@ const Details = () => {
                             Investors
                         </button>
                     </div>
-
-                    {/* Content */}
                     <div className="mt-4">
-                        {/* Conditional rendering based on the selected tab */}
                         {activeTab === 'nft' ? <NFTList /> : <Investors />}
                     </div>
                 </div>

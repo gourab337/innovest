@@ -47,7 +47,7 @@ function Explore() {
   return (
     <>
       <Nav />
-      <div className="h-full bg-black w-full">
+      <div className="h-full bg-black w-full mt-24">
         <div className="px-4 py-5">
           <span className="text-white">Projects</span>
           <div className="flex flex-col ml-32 mr-24">{renderCards()}</div>
