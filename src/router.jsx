@@ -6,15 +6,22 @@ import Explore from './pages/Explore';
 import Auth from './pages/auth';
 import Details from './pages/Details';
 import './styles/global.css';
+import Stripe from './pages/Stripe';
 
 const router = createBrowserRouter([
   {
     path: '/explore',
     element: <Explore />,
+    children: [
+      {
+        path: '/:id',
+        element: <Details />,
+      },
+    ],
   },
   {
-    path: '/explore/details',
-    element: <Details />,
+    path: '/stripe',
+    element: <Stripe />,
   },
   {
     path: '/',
