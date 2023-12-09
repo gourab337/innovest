@@ -1,12 +1,16 @@
+import {useContext} from 'react'
 import Nav from '../components/nav/Nav';
+import { authContext } from '../store/Auth';
+
 
 function Explore() {
-  const data = [1, 2, 3, 4, 5, 6];
+  const { data } = useContext(authContext);
+  const projectList=data?.projects
   const cardsPerRow = 4;
   const renderCards = () => {
     const rows = [];
-    for (let i = 0; i < data.length; i += cardsPerRow) {
-      const rowCards = data.slice(i, i + cardsPerRow).map((ele, index) => (
+    for (let i = 0; i < projectList?.length; i += cardsPerRow) {
+      const rowCards = projectList?.slice(i, i + cardsPerRow).map((ele, index) => (
         <div
           key={i + index}
           className='flex-1 max-w-xs  border border-gray-200 rounded-lg shadow  dark:border-gray-700 m-2  bg-opacity-0'
@@ -15,20 +19,19 @@ function Explore() {
             <a href='/explore/details'>
               <img
                 className='rounded-t-lg w-full'
-                src='https://profile.coinbase.com/images/default_avatars/Frame-12.svg'
+                src={ele?.imgUrl}
                 alt=''
               />
             </a>
             <div className='p-5'>
               <a href='#'>
                 <h5 className='mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white  bg-opacity-0'>
-                  Noteworthy technology acquisitions 2021
+                 {ele.name}
                 </h5>
               </a>
               <div className='mb-24'>
                 <p className='mb-3 font-normal text-gray-700 dark:text-gray-400  bg-opacity-0'>
-                  Here are the biggest enterprise technology acquisitions of
-                  2021 so far, in reverse chronological order.
+                 {ele?.description}
                 </p>
               </div>
               <a href='#' className='text-blue-700'>

@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
+import {useContext} from 'react'
 import Nav from '../components/nav/Nav';
 import Drops from '../components/details/Drops';
 import SuggestedProfiles from '../components/details/SuggestedProfiles';
+import { authContext } from '../store/Auth';
 
 
 const Details = () => {
+  const { data } = useContext(authContext);
   const [invest, setinvest] = useState(false)
   const callChange = ()=>{
-    console.log("call came here 1")
     setinvest(true);
   }
   
