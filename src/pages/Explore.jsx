@@ -31,7 +31,7 @@ function Explore() {
                   2021 so far, in reverse chronological order.
                 </p>
               </div>
-              <a href='#' className='text-blue-700'>
+              <a href='#' className='text-innovest'>
                 Read more
                 <svg
                   className='rtl:rotate-180 w-3.5 h-3.5 ms-2'

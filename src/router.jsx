@@ -7,6 +7,7 @@ import Auth from './pages/auth';
 import Details from './pages/Details';
 import './styles/global.css';
 import Stripe from './pages/Push';
+import Landing from './pages/Landing';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,11 @@ const router = createBrowserRouter([
     path: '/push',
     element: <Stripe />,
   },
+  ,
+  {
+    path: '/',
+    element: <Landing />,
+  },
   {
     path: '/',
     element: <Layout />,
@@ -30,10 +36,6 @@ const router = createBrowserRouter([
       {
         path: '/:id',
         element: <Profile />,
-      },
-      {
-        path: '/',
-        element: <Auth />,
       },
     ],
   },

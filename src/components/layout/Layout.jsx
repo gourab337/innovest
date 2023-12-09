@@ -1,4 +1,4 @@
-import {useContext} from 'react'
+import { useContext } from 'react';
 import { Outlet } from 'react-router-dom';
 import Nav from '../nav/Nav';
 import SidebarLeft from './SidebarLeft';
@@ -14,7 +14,7 @@ function Layout() {
         <Nav />
       </div>
       <div className='flex'>
-        <SidebarLeft  />
+        <SidebarLeft />
         <main className='h-auto w-full p-2 '>
           <Outlet />
         </main>
@@ -25,7 +25,7 @@ function Layout() {
         <div className='w-2/3'>
           <div className='flex justify-between text-white text-2xl font-bold mb-6 font-lato'>
             <div>Explore Profiles</div>
-            <div className='text-blue-700 text-lg cursor-pointer'>See all</div>
+            <div className='text-innovest text-lg cursor-pointer'>See all</div>
           </div>
           <VerticalHeighlights />
         </div>

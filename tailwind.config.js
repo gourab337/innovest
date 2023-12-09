@@ -9,6 +9,9 @@ export default {
         opensans: ['Open Sans', 'sans-serif'],
         lato: ['Lato', 'sans-serif'],
       },
+      colors: {
+        innovest: '#2ba84a',
+      },
     },
   },
   plugins: [],

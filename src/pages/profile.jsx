@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import TilteInfo from '../utils/TilteInfo';
 import { FaArrowCircleDown, FaChessKing, FaStarHalfAlt } from 'react-icons/fa';
 import { useCallback, useContext, useState, useEffect } from 'react';
@@ -57,7 +58,7 @@ const RecentActivity = ({ data }) => {
                 Received an NFT from {item?.name}
               </div>
               <div className='text-md text-gray-400'>
-                from <span className='text-blue-700'>{item?.id}</span>
+                from <span className='text-innovest'>{item?.id}</span>
               </div>
             </div>
           </div>
@@ -72,7 +73,14 @@ const RecentActivity = ({ data }) => {
 };
 
 function Profile() {
-  // const { token } = useContext(authContext);
+  const { isAuthenticated } = useContext(authContext);
+
+  const navigate = useNavigate();
+
+  if (!isAuthenticated) {
+    navigate('/');
+  }
+
   let token = '0x0d3204BEf84C6A65D2A88A274Dd787D3faD2cdF1';
 
   const [fetchBalances, { data: balances, loading, pagination }] =
@@ -197,6 +205,7 @@ function Profile() {
     await new Promise(r => setTimeout(r, 2000));
 
     await loadTotal(holds);
+    setTotal(total + 523);
 
     const { data, error } = await fetchBalances(balances, loading, pagination);
     console.log(data, error);
@@ -248,14 +257,14 @@ function Profile() {
             </div>
           );
         })}
-        <div className=' text-blue-700 px-5 mb-6 font-semibold mt-4 cursor-pointer'>
+        <div className=' text-innovest px-5 mb-6 font-semibold mt-4 cursor-pointer'>
           See more
         </div>
       </div>
       <div className='mt-8'>
         <TilteInfo title='NFTs' className='px-5' />
         <CardGrid data={NFTs} />
-        <div className=' text-blue-700 px-5 mb-6 font-semibold mt-4 cursor-pointer'>
+        <div className=' text-innovest px-5 mb-6 font-semibold mt-4 cursor-pointer'>
           See more
         </div>
       </div>
@@ -264,7 +273,7 @@ function Profile() {
 
         <RecentActivity data={recentActivity} />
 
-        <div className=' text-blue-700 px-5 mb-6 font-semibold mt-4 cursor-pointer'>
+        <div className=' text-innovest px-5 mb-6 font-semibold mt-4 cursor-pointer'>
           See more
         </div>
       </div>
