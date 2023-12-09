@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import Search from './Search';
 
@@ -6,6 +6,8 @@ import { authContext } from '../../store/Auth';
 
 function Nav() {
   const { isAuthenticated, login } = useContext(authContext);
+
+  const navigate = useNavigate();
 
   return (
     <nav className='bg-black border-b fixed border-gray-800 px-16 py-4  left-0 right-0 top-0 z-50 font-lato'>
@@ -31,7 +33,10 @@ function Nav() {
             <button
               type='button'
               className='py-2.5 px-5  text-sm  font-roboto tracking-wider  bg-blue-700 text-white focus:outline-none  rounded-full  font-bold hover:bg-blue-800 hover:shadow-md transition-shadow            '
-              onClick={login}
+              onClick={async () => {
+                await login();
+                navigate('/profile');
+              }}
             >
               Connect
             </button>
