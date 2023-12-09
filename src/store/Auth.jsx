@@ -26,10 +26,9 @@ const AuthContextProvider = (props) => {
         Accept: "application/json",
       },
     });
-    const res = await data.json();
+    const res = await data?.json();
 
-    console.log(res);
-    setData(res);
+    setData(res[0]);
   }, []);
   useEffect(() => {
     getData();

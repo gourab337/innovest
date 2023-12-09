@@ -1,9 +1,11 @@
+import {useContext} from 'react'
 import { Outlet } from 'react-router-dom';
 import Nav from '../nav/Nav';
 import SidebarLeft from './SidebarLeft';
 import SidebarRight from './SideBarRight';
 
 import VerticalHeighlights from '../profile/VerticalHighlights';
+import { authContext } from '../../store/Auth';
 
 function Layout() {
   return (
@@ -12,7 +14,7 @@ function Layout() {
         <Nav />
       </div>
       <div className='flex'>
-        <SidebarLeft text={'Hi'} />
+        <SidebarLeft  />
         <main className='h-auto w-full p-2 '>
           <Outlet />
         </main>

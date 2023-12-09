@@ -3,7 +3,7 @@ function Highlight({ profile }) {
     <div className='flex items-center mb-1.5'>
       <img
         className='w-9 h-9 rounded-full block'
-        src={profile?.image}
+        src={profile?.profilePic}
         alt='Rounded avatar'
       />
       <div className='ml-3 flex flex-col'>
@@ -11,7 +11,7 @@ function Highlight({ profile }) {
           {profile?.name}
         </div>
         <div className='font-lato text-gray-300 font-semibold text-sm'>
-          {profile?.ens}
+          {profile?.username}
         </div>
       </div>
     </div>
