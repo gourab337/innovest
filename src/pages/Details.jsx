@@ -2,44 +2,16 @@ import { useState, useEffect } from 'react';
 import Nav from '../components/nav/Nav';
 import Drops from '../components/details/Drops';
 import SuggestedProfiles from '../components/details/SuggestedProfiles';
-import Web3 from 'web3';
-import ABI from '../../contracts/ABI.json'
+
 
 const Details = () => {
-  const web3 = window.ethereum ? new Web3(window.ethereum) : null;
-  let contract = null;
-  if (!web3) {
-    console.error("Web3 provider not found");
-  } else {
-    contract = new web3.eth.Contract(
-      ABI,
-      '0x6c9416C8C39049E9D956fF6cEAdabAa5C296bC52', 
-
-    );
-console.log(contract)
+  const [invest, setinvest] = useState(false)
+  const callChange = ()=>{
+    console.log("call came here 1")
+    setinvest(true);
   }
-  const checkContractData = async () => {
-    contract = new web3.eth.Contract(
-      ABI,
-      '0x6c9416C8C39049E9D956fF6cEAdabAa5C296bC52', 
-
-    );
-    const response =  await contract.methods.isStakeholder('0x4C31B5c5f1D874458cfF136030D066bF38Bc407e').call((error, response) => {
-      if (error) {
-        console.error("Error calling contract method:", error);
-      } else {
-        console.log("response from the contract is", response);
-      }
-    });
-    console.log("response from contract:",response)
-  };
-
-
+  
   const [activeTab, setActiveTab] = useState('nft');
-  useEffect(() => {
-    checkContractData()
-  }, [])
-
   return (
     <>
       <Nav />
@@ -64,9 +36,27 @@ console.log(contract)
             <h5 className='text-3xl font-bold mb-2'>
               Noteworthy technology acquisitio
             </h5>
-            <button className='bg-grey-500 bg-gray-800 border border-gray-200 w-full text-white py-2 px-4 rounded-md mb-4 bg-opacity-0'>
+           { !invest ?
+           ( <button className=' border border-gray-200 w-full py-2 px-4 rounded-md mb-4 bg-white text-gray-700' onClick={callChange}>
               Invest Now
+            </button>):(
+              <div className='flex flex-row gap-4'>
+              <button className='bg-grey-500 bg-gray-800 border border-gray-200 w-full text-white py-2 px-4 rounded-md mb-4 bg-opacity-0'>
+              Invested
             </button>
+            <button className='border border-gray-200 w-full py-2 px-4 rounded-md mb-4 bg-white text-gray-700'>
+              Thanks
+            </button>
+              </div>
+              )
+            
+            }
+            <div className='bg-gray-700 border border-gray-600 rounded-lg shadow p-4 mb-4'>
+              <p className='text-gray-300'>
+                Here are the biggest enterprise technology acquisitions of 2021
+                so far, in reverse chronological order.
+              </p>
+            </div>
             <div className='bg-gray-700 border border-gray-600 rounded-lg shadow p-4'>
               <p className='text-gray-300'>
                 Here are the biggest enterprise technology acquisitions of 2021
