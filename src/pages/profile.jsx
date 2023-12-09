@@ -1,25 +1,25 @@
-import TilteInfo from '../utils/TilteInfo';
-import { FaArrowCircleDown, FaChessKing, FaStarHalfAlt } from 'react-icons/fa';
-import { useCallback, useContext, useState, useEffect } from 'react';
+import TilteInfo from "../utils/TilteInfo";
+import { FaArrowCircleDown, FaChessKing, FaStarHalfAlt } from "react-icons/fa";
+import { useCallback, useContext, useState, useEffect } from "react";
 
-import { authContext } from '../store/Auth';
+import { authContext } from "../store/Auth";
 
 const CardGrid = ({ data }) => {
   const truncateText = (text, maxLength) => {
-    return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
+    return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
   };
 
   return (
-    <div className='grid grid-cols-3 gap-2'>
+    <div className="grid grid-cols-3 gap-2">
       {data?.map((item, index) => (
-        <div key={index} className=' p-4 rounded-md'>
+        <div key={index} className=" p-4 rounded-md">
           <img
             src={item?.image_original_url}
-            alt='nft'
-            className='h-36 w-36 rounded-md mb-2 hover:shadow-md cursor-pointer'
+            alt="nft"
+            className="h-36 w-36 rounded-md mb-2 hover:shadow-md cursor-pointer"
           />
-          <p className='text-white font-bold font-lato'>
-            {truncateText(item.description || item.name || 'dummy.eth', 16)}
+          <p className="text-white font-bold font-lato">
+            {truncateText(item.description || item.name || "dummy.eth", 16)}
           </p>
         </div>
       ))}
@@ -29,39 +29,39 @@ const CardGrid = ({ data }) => {
 
 const RecentActivity = ({ data }) => {
   return data.map((item, index) => {
-    if (item?.action === 'subscribe')
+    if (item?.action === "subscribe")
       return (
         <div
           key={item?.id}
-          className='py-4 px-4 mx-2 flex  items-center font-lato font-bold mb-2 hover:bg-slate-950 rounded-lg cursor-pointer '
+          className="py-4 px-4 mx-2 flex  items-center font-lato font-bold mb-2 hover:bg-slate-950 rounded-lg cursor-pointer "
         >
           <FaStarHalfAlt />
-          <div className='flex flex-col ml-4 '>
+          <div className="flex flex-col ml-4 ">
             <div>Subscribed to {item?.name}</div>
-            <div className='text-gray-500'>{item?.id}</div>
+            <div className="text-gray-500">{item?.id}</div>
           </div>
         </div>
       );
-    else if (item?.action === 'receive')
+    else if (item?.action === "receive")
       return (
         <div
           key={item?.id}
-          className='py-4 px-4 mx-2 flex justify-between items-center font-lato font-bold mb-2 hover:bg-slate-950 rounded-lg cursor-pointer '
+          className="py-4 px-4 mx-2 flex justify-between items-center font-lato font-bold mb-2 hover:bg-slate-950 rounded-lg cursor-pointer "
         >
-          <div className='flex items-center justify-center'>
+          <div className="flex items-center justify-center">
             <FaArrowCircleDown />
-            <div className='ml-3 '>
-              <div className='text-lg text-white'>
+            <div className="ml-3 ">
+              <div className="text-lg text-white">
                 Received an NFT from {item?.name}
               </div>
-              <div className='text-md text-gray-400'>
-                from <span className='text-blue-700'>{item?.id}</span>
+              <div className="text-md text-gray-400">
+                from <span className="text-blue-700">{item?.id}</span>
               </div>
             </div>
           </div>
-          <div className='flex flex-col text-right'>
+          <div className="flex flex-col text-right">
             <div>+$1.37</div>
-            <div className='text-gray-500'>0.000706 ETH</div>
+            <div className="text-gray-500">0.000706 ETH</div>
           </div>
         </div>
       );
@@ -71,7 +71,7 @@ const RecentActivity = ({ data }) => {
 
 function Profile() {
   // const { token } = useContext(authContext);
-  let token = '0x0d3204BEf84C6A65D2A88A274Dd787D3faD2cdF1';
+  let token = "0x0d3204BEf84C6A65D2A88A274Dd787D3faD2cdF1";
 
   const [holdings, setHoldings] = useState([]);
   const [NFTs, setNFTs] = useState([]);
@@ -95,8 +95,8 @@ function Profile() {
       }&address=${token}`,
       {
         headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
+          "Content-Type": "application/json",
+          Accept: "application/json",
         },
       }
     );
@@ -104,6 +104,7 @@ function Profile() {
     const data = await res.json();
 
     console.log(data);
+    console.log(authContext.data);
 
     if (data.assets) {
       setNFTs(data.assets);
@@ -112,12 +113,12 @@ function Profile() {
 
   const loadHoldings = useCallback(async () => {
     const res = await fetch(
-      'http://localhost:3000/?url=https://api.1inch.dev/balance/v1.2/1/balances/' +
+      "http://localhost:3000/?url=https://api.1inch.dev/balance/v1.2/1/balances/" +
         token,
       {
         headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
+          "Content-Type": "application/json",
+          Accept: "application/json",
         },
       }
     );
@@ -137,8 +138,8 @@ function Profile() {
         `http://localhost:3000/?url=https://api.1inch.dev/token/v1.2/1/custom/${addr}`,
         {
           headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
+            "Content-Type": "application/json",
+            Accept: "application/json",
           },
         }
       );
@@ -149,7 +150,7 @@ function Profile() {
       });
     }
 
-    topHolds.forEach(hold => {
+    topHolds.forEach((hold) => {
       if (dividers[hold.symbol]) {
         hold.rate = hold.rate / 10 ** dividers[hold.symbol];
       }
@@ -160,9 +161,9 @@ function Profile() {
   }, []);
 
   const loadTotal = useCallback(async () => {
-    console.log('hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
+    console.log("hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
     console.log(holdings);
-    holdings.forEach(async hold => {
+    holdings.forEach(async (hold) => {
       const res = await fetch(
         `http://localhost:3000/?url=https://api.1inch.dev/price/v1.1/1/${hold.address}?currency=USD`
       );
@@ -187,63 +188,63 @@ function Profile() {
 
   const recentActivity = [
     {
-      action: 'subscribe',
-      name: 'Gnome Research',
-      id: '0x1234.asdasnd678',
+      action: "subscribe",
+      name: "Gnome Research",
+      id: "0x1234.asdasnd678",
     },
     {
-      action: 'receive',
-      name: 'Old MOnkey',
-      id: '0x1234...5678',
+      action: "receive",
+      name: "Old MOnkey",
+      id: "0x1234...5678",
     },
   ];
 
   return (
-    <div className='text-white font-roboto '>
-      <div className='flex flex-col px-5 mt-4'>
-        <TilteInfo title='Total balance on Ethereum' />
-        <div className='text-2xl font-bold'>${total}</div>
+    <div className="text-white font-roboto ">
+      <div className="flex flex-col px-5 mt-4">
+        <TilteInfo title="Total balance on Ethereum" />
+        <div className="text-2xl font-bold">${total}</div>
       </div>
-      <div className='mt-6'>
-        <TilteInfo className='px-5' title='Top holdings' />
-        {holdings.map(holding => {
+      <div className="mt-6">
+        <TilteInfo className="px-5" title="Top holdings" />
+        {holdings.map((holding) => {
           return (
             <div
               key={holding?.symbol}
-              className='py-4 px-4 mx-2 flex justify-between items-center font-bold mb-2 hover:bg-slate-950 rounded-lg cursor-pointer '
+              className="py-4 px-4 mx-2 flex justify-between items-center font-bold mb-2 hover:bg-slate-950 rounded-lg cursor-pointer "
             >
-              <div className='flex items-center justify-center'>
+              <div className="flex items-center justify-center">
                 <img
-                  className='w-9 h-9 rounded-full block'
+                  className="w-9 h-9 rounded-full block"
                   src={holding?.logoURI}
-                  alt='Rounded avatar'
+                  alt="Rounded avatar"
                 />
-                <div className='ml-3 text-lg'>{holding?.name}</div>
+                <div className="ml-3 text-lg">{holding?.name}</div>
               </div>
-              <div className='flex flex-col text-right'>
+              <div className="flex flex-col text-right">
                 <div>${holding?.rate}</div>
-                <div className='text-gray-500'>Rating {holding?.rating}</div>
+                <div className="text-gray-500">Rating {holding?.rating}</div>
               </div>
             </div>
           );
         })}
-        <div className=' text-blue-700 px-5 mb-6 font-semibold mt-4 cursor-pointer'>
+        <div className=" text-blue-700 px-5 mb-6 font-semibold mt-4 cursor-pointer">
           See more
         </div>
       </div>
-      <div className='mt-8'>
-        <TilteInfo title='NFTs' className='px-5' />
+      <div className="mt-8">
+        <TilteInfo title="NFTs" className="px-5" />
         <CardGrid data={NFTs} />
-        <div className=' text-blue-700 px-5 mb-6 font-semibold mt-4 cursor-pointer'>
+        <div className=" text-blue-700 px-5 mb-6 font-semibold mt-4 cursor-pointer">
           See more
         </div>
       </div>
-      <div className='mt-8'>
-        <TilteInfo title='Recent Activity' className='px-5 mb-2' />
+      <div className="mt-8">
+        <TilteInfo title="Recent Activity" className="px-5 mb-2" />
 
         <RecentActivity data={recentActivity} />
 
-        <div className=' text-blue-700 px-5 mb-6 font-semibold mt-4 cursor-pointer'>
+        <div className=" text-blue-700 px-5 mb-6 font-semibold mt-4 cursor-pointer">
           See more
         </div>
       </div>
