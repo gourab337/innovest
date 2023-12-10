@@ -116,16 +116,16 @@ const Details = () => {
           <div className='flex'>
             <button
               onClick={() => setActiveTab('nft')}
-              className={`text-white py-2 px-4 border-b-2 border-transparent focus:outline-none hover:border-blue-500 ${
-                activeTab === 'nft' ? 'border-blue-500' : ''
+              className={`text-white py-2 px-4 border-b-2 border-transparent focus:border-innovest hover:border-innovest ${
+                activeTab === 'nft' ? 'border-innovest' : ''
               }`}
             >
               Drops
             </button>
             <button
               onClick={() => setActiveTab('investor')}
-              className={`text-white py-2 px-4 border-b-2 border-transparent focus:outline-none hover:border-blue-500 ${
-                activeTab === 'investor' ? 'border-blue-500' : ''
+              className={`text-white py-2 px-4 border-b-2 border-transparent focus:border-innovest hover:border-innovest ${
+                activeTab === 'investor' ? 'border-innovest' : ''
               }`}
             >
               Leaderboard

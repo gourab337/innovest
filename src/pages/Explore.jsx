@@ -21,7 +21,6 @@ const openDetail =(index)=>{
       <div className='mt-24'>
         <div className=' bg-black w-full '>
           <div className='px-4 py-5'>
-            <span className='text-white'>Projects</span>
             <div className='flex flex-wrap gap-2 justify-center '>
               {projectList?.map((ele, index) => (
                 <div
@@ -42,7 +41,7 @@ const openDetail =(index)=>{
                       <p className='text-sm text-gray-700 dark:text-gray-400 bg-opacity-0'>
                         {truncateDescription(ele?.description, 150)}
                       </p>
-                      <a  className='text-blue-700'>
+                      <a  className='text-innovest'>
                         Read more
                         <svg
                           className='rtl:rotate-180 w-3.5 h-3.5 ms-2'

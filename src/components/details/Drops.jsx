@@ -37,7 +37,7 @@ const Drops = () => {
                     <h5 className="text-md  tracking-tight text-gray-900 dark:text-white bg-opacity-0">
                       {cardData.name}
                     </h5>
-                    <p className="text-blue-400 text-sm ">{cardData.projectOwner}</p>
+                    <p className="text-green-400 text-sm ">{cardData.projectOwner}</p>
                     <div className='flex flex-row justify-between text-gray-600'>
                     <p className=" text-sm ">{cardData.date}</p>
                     <p className=" text-sm ">{cardData.noOfOwner}</p>
@@ -62,7 +62,6 @@ const Drops = () => {
 
   return (
     <div className="h-full bg-black w-full ">
-      <p className="mb-2">Latest Drops</p>
       <div className="flex flex-col">{renderCards()}</div>
     </div>
   );
