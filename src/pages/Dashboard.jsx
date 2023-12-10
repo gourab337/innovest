@@ -29,7 +29,11 @@ function Dashboard() {
 
     var raw = JSON.stringify({
       title: 'Huddle01-Test',
-      roomLocked: true,
+      roomLocked: false,
+      hostWallets: [
+        '0x14ABd4A9B37a5e5d015f273c18d7CCA2E3f1f5c2',
+        '0xEf6d833af3751663bCf784066a767ba6b7979BE5',
+      ],
     });
 
     var requestOptions = {
@@ -64,7 +68,7 @@ function Dashboard() {
     const sendNotifRes = await user.channel.send(['*'], {
       notification: {
         title: project?.name,
-        body: `Meeting link to talk with the stakeholders and project owner`,
+        body: `Meeting link to talk with the stakeholders and project owner. Meeting Link - ${meetingLink}`,
       },
       payload: {
         cta: meetingLink,
