@@ -3,11 +3,11 @@ import { createBrowserRouter } from 'react-router-dom';
 import Profile from './pages/profile';
 import Layout from './components/layout/Layout';
 import Explore from './pages/Explore';
-import Auth from './pages/auth';
 import Details from './pages/Details';
 import './styles/global.css';
 import Stripe from './pages/Push';
 import Landing from './pages/Landing';
+import Dashboard from './pages/Dashboard';
 
 const router = createBrowserRouter([
   {
@@ -18,7 +18,10 @@ const router = createBrowserRouter([
     path: '/explore',
     element: <Explore />,
   },
-
+  {
+    path: '/dashboard',
+    element: <Dashboard />,
+  },
   {
     path: '/push',
     element: <Stripe />,

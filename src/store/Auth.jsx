@@ -25,7 +25,7 @@ const AuthContextProvider = props => {
   const [data, setData] = useState(null);
   const [safeAuthPack, setSafeAuthPack] = useState(null);
   const getData = useCallback(async () => {
-    const data = await fetch('http://localhost:3000/data', {
+    const data = await fetch('http://localhost:5000/data', {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',

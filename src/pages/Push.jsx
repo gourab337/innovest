@@ -11,7 +11,6 @@ function Push() {
 
   const provider = new ethers.providers.JsonRpcProvider(
     import.meta.env.VITE_APP_RPC
-    // temp
   );
 
   let signer = new ethers.Wallet(import.meta.env.VITE_APP_PVTKEY, provider);
