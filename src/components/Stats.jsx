@@ -7,7 +7,7 @@ import Highlight from './profile/Highlight';
 function Stats() {
   const { data } = useContext(authContext);
 
-  const profiles = data?.popularProfiles.slice(-5);
+  const profiles = data?.popularProfiles.slice(-5) || [];
   return (
     <div className='w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700'>
       <div className='flex items-center justify-between mb-4'>

@@ -14,7 +14,7 @@ import Stats from '../components/Stats';
 function Dashboard() {
   const { data } = useContext(authContext);
 
-  const project = data?.projects[0];
+  const project = data?.projects[0] || [];
 
   const channelHash = '0x14ABd4A9B37a5e5d015f273c18d7CCA2E3f1f5c2';
 
