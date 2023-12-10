@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {useContext} from 'react'
 import Nav from '../components/nav/Nav';
 import Drops from '../components/details/Drops';
 import SuggestedProfiles from '../components/details/SuggestedProfiles';
 import { authContext } from '../store/Auth';
-
+import { useParams } from 'react-router-dom';
 
 const Details = () => {
   const { data } = useContext(authContext);
@@ -12,7 +12,8 @@ const Details = () => {
   const callChange = ()=>{
     setinvest(true);
   }
-  
+  const { id } = useParams();
+  const projectInfo = data?.projects[id]
   const [activeTab, setActiveTab] = useState('nft');
   return (
     <>
@@ -23,20 +24,20 @@ const Details = () => {
             <div className='hidden md:block w-full h-24 filter blur-lg'>
               <img
                 className='object-cover w-full h-36'
-                src='https://profile.coinbase.com/images/default_avatars/Frame-12.svg'
+                src={projectInfo?.imgUrl}
                 alt=''
               />
             </div>
             <img
               className='object-cover w-32 h-32 border-2 border-black-700 absolute '
-              src='https://profile.coinbase.com/images/default_avatars/Frame-12.svg'
+              src={projectInfo?.imgUrl}
               alt=''
             />
           </div>
 
           <div>
             <h5 className='text-3xl font-bold mb-2'>
-              Noteworthy technology acquisitio
+            {projectInfo?.name}
             </h5>
            { !invest ?
            ( <button className=' border border-gray-200 w-full py-2 px-4 rounded-md mb-4 bg-white text-gray-700' onClick={callChange}>
@@ -47,22 +48,21 @@ const Details = () => {
               Invested
             </button>
             <button className='border border-gray-200 w-full py-2 px-4 rounded-md mb-4 bg-white text-gray-700'>
-              Thanks
+              Sponsor
             </button>
               </div>
               )
             
             }
             <div className='bg-gray-700 border border-gray-600 rounded-lg shadow p-4 mb-4'>
+            <h3 className='text-bold'>Perks</h3>
               <p className='text-gray-300'>
-                Here are the biggest enterprise technology acquisitions of 2021
-                so far, in reverse chronological order.
+                {projectInfo?.perks}
               </p>
             </div>
             <div className='bg-gray-700 border border-gray-600 rounded-lg shadow p-4'>
               <p className='text-gray-300'>
-                Here are the biggest enterprise technology acquisitions of 2021
-                so far, in reverse chronological order.
+               {projectInfo?.description}
               </p>
             </div>
           </div>
