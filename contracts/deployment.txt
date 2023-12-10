@@ -1,9 +1,12 @@
-Scroll Contract Address: https://sepolia.scrollscan.com/address/0x6c9416c8c39049e9d956ff6ceadabaa5c296bc52#code
+Scroll Contract Address for Example Project: https://sepolia.scrollscan.com/address/0x6c9416c8c39049e9d956ff6ceadabaa5c296bc52#code
 
 
-Genome Research Token Contract (Base):  0xf13E3c5F47aAeD75cCA085077e688c032C619e5a
+Base Contract Address for Token Minting:  0xf13E3c5F47aAeD75cCA085077e688c032C619e5a
 
 MTK Token Contract (Base): https://base-sepolia.blockscout.com/address/0x702593A748513ad0738124B732D539daE040729c
 
-Base Contract Address: https://goerli.basescan.org/address/0x3ab89879b7ab7ca215d1a12f3ba8d1643d72d550
+Base Contract Address for Example Project: https://goerli.basescan.org/address/0x3ab89879b7ab7ca215d1a12f3ba8d1643d72d550
 
+Polygon Contract Address for Example Project: https://mumbai.polygonscan.com/address/0x3ab89879b7ab7ca215D1a12F3ba8D1643d72D550
+
+Polygon Contract Address for Token Minting: https://mumbai.polygonscan.com/address/0xf13E3c5F47aAeD75cCA085077e688c032C619e5a
