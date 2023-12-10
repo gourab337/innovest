@@ -81,11 +81,11 @@ const Details = () => {
               className={`text-white py-2 px-4 border-b-2 border-transparent focus:outline-none hover:border-blue-500 ${activeTab === 'investor' ? 'border-blue-500' : ''
                 }`}
             >
-              Suggested Profiles
+              Leaderboard
             </button>
           </div>
           <div className='mt-4'>
-            {activeTab === 'nft' ? <Drops /> : <SuggestedProfiles />}
+            {activeTab === 'nft' ? <Drops /> : <SuggestedProfiles data={data}/>}
           </div>
         </div>
       </div>
