@@ -9,7 +9,7 @@ function SidebarRight() {
   return (
     <aside className='z-40 min-h-screen  bg-black border-l border-gray-800 w-full '>
       <div className='pl-8 py-5 flex flex-col text-gray-300'>
-        <TitleInfo title='Popular Profiles' />
+        <TitleInfo title='Suggested Profiles' />
         <span className='mb-4'></span>
         {popularProfiles?.map(profile => {
           return <HighlightProfile key={profile?.username} profile={profile} />;

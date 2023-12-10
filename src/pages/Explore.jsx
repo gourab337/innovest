@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import {useNavigate} from 'react-router-dom'
 import Nav from '../components/nav/Nav';
 import { authContext } from '../store/Auth';
 
@@ -10,7 +11,10 @@ function Explore() {
       ? description.slice(0, maxLength) + '...'
       : description;
   };
-
+  const navigate = useNavigate();
+const openDetail =(index)=>{
+  navigate(`/explore/${index}`)
+}
   return (
     <>
       <Nav />
@@ -24,24 +28,21 @@ function Explore() {
                   key={index}
                   className='w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 h-3/4'
                 >
-                  <div className='border border-gray-200 rounded-lg shadow dark:border-gray-700 bg-opacity-0 h-96'>
-                    <a href='/explore/details'>
+                  <div className='border border-gray-200 rounded-lg shadow dark:border-gray-700 bg-opacity-0 h-96' onClick={() => openDetail(index)}
+>
                       <img
                         className='rounded-t-lg w-full h-44 object-cover'
                         src={ele?.imgUrl}
                         alt=''
                       />
-                    </a>
                     <div className='p-5'>
-                      <a href='#'>
                         <h5 className='text-2xl font-bold tracking-tight text-gray-900 dark:text-white bg-opacity-0'>
                           {ele.name}
                         </h5>
-                      </a>
                       <p className='text-sm text-gray-700 dark:text-gray-400 bg-opacity-0'>
                         {truncateDescription(ele?.description, 150)}
                       </p>
-                      <a href='#' className='text-blue-700'>
+                      <a  className='text-blue-700'>
                         Read more
                         <svg
                           className='rtl:rotate-180 w-3.5 h-3.5 ms-2'

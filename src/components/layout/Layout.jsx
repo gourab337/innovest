@@ -23,11 +23,11 @@ function Layout() {
       <div className='border-t mb-10 border-gray-800'></div>
       <div className='flex items-center justify-center w-full mb-10'>
         <div className='w-2/3'>
-          <div className='flex justify-between text-white text-2xl font-bold mb-6 font-lato'>
+          {/* <div className='flex justify-between text-white text-2xl font-bold mb-6 font-lato'>
             <div>Explore Profiles</div>
             <div className='text-innovest text-lg cursor-pointer'>See all</div>
-          </div>
-          <VerticalHeighlights />
+          </div> */}
+          {/* <VerticalHeighlights /> */}
         </div>
       </div>
     </div>
