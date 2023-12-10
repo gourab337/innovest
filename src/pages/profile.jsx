@@ -195,6 +195,7 @@ function Profile() {
       if (isNaN(value)) return;
       setTotal(total + value);
     });
+    setTotal((total + 523).toFixed(3));
   }, []);
 
   const loadData = useCallback(async () => {
@@ -205,7 +206,6 @@ function Profile() {
     await new Promise(r => setTimeout(r, 2000));
 
     await loadTotal(holds);
-    setTotal(total + 523);
 
     const { data, error } = await fetchBalances(balances, loading, pagination);
     console.log(data, error);
